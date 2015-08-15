@@ -1,0 +1,22 @@
+package com.hbase.practice;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.ZooKeeperConnectionException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class CRUD_Operations {
+	
+	
+	
+	
+		Configuration conf= HBaseConfiguration.create();
+		
+	
+	public void insertData(){
+		HTable htable =new HTable()
+	}
+}

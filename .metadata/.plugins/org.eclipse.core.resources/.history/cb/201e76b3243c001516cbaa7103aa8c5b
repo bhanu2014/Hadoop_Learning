@@ -1,0 +1,5 @@
+package com.hbase.crud;
+
+public class CreateTable {
+
+}

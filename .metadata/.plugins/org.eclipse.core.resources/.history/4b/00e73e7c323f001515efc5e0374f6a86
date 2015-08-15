@@ -1,0 +1,11 @@
+package com.hbase.practice;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+
+public class DeleteTable {
+	public void deleteTable(){
+		Configuration conf =HBaseConfiguration.create();
+		
+	}
+}

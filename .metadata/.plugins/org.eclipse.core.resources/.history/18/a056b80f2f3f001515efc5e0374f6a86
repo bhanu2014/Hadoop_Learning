@@ -1,0 +1,12 @@
+package com.hbase.practice;
+
+import org.apache.zookeeper.Op.Create;
+
+public class HadoopIntialize {
+	public static void main(String[] args){
+		CreateTable createTable= new CreateTable();
+		ListTables listTables = new ListTables();
+		
+		createTable.createTable("student","student_info","student_marks");
+	}
+}

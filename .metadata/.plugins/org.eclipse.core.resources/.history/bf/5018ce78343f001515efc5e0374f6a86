@@ -1,0 +1,13 @@
+package com.hbase.practice;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+
+public class CRUD_Operations {
+	
+	Configuration cong= HBaseConfiguration.create();
+	
+	public void insertData(){
+		
+	}
+}

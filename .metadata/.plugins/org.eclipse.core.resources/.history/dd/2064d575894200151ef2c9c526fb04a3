@@ -1,0 +1,27 @@
+package com.client.sum;
+
+public class Aggregrator {
+	Configuration conf = HBaseConfiguration.create();
+	HConnection connection = HConnectionManager.createConnection(conf);
+	HTableInterface table = connection.getTable("users");
+	final SumRequest request = SumRequest.newBuilder().setFamily("salaryDet").setColumn("gross").build();
+	try {
+	Map<byte[], Long> results = table.CoprocessorService (SumService.class, null, null,
+	new Batch.Call<SumService, Long>() {
+	    @Override
+	        public Long call(SumService aggregate) throws IOException {
+	BlockingRpcCallback rpcCallback = new BlockingRpcCallback();
+	            aggregate.getSum(null, request, rpcCallback);
+	            SumResponse response = rpcCallback.get();
+	            return response.hasSum() ? response.getSum() : 0L;
+	        }
+	    });
+	    for (Long sum : results.values()) {
+	        System.out.println("Sum = " + sum);
+	    }
+	} catch (ServiceException e) {
+	e.printStackTrace();
+	} catch (Throwable e) {
+	    e.printStackTrace();
+	}
+}

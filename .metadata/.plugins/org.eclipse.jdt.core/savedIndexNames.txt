@@ -1,0 +1,6 @@
+INDEX VERSION 1.127+D:\technical\Hadoop_Learning\hadoop_workspace\.metadata\.plugins\org.eclipse.jdt.core
+2698343937.index
+223382120.index
+652703660.index
+1118838452.index
+3473158248.index

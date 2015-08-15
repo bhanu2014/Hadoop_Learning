@@ -1,0 +1,15 @@
+package com.hbase.practice;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class CRUD_Operations {
+	
+	Configuration conf= HBaseConfiguration.create();
+	HBaseAdmin admin= new HBaseAdmin(conf));
+	
+	public void insertData(){
+		
+	}
+}

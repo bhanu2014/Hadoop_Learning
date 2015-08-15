@@ -1,0 +1,15 @@
+package com.hbase.coprocessor;
+
+import java.io.IOException;
+
+
+ 
+public interface RowCountProtocol extends CoprocessorProtocol {
+    
+    long getRowCount() throws IOException;
+ 
+    long getRowCount(Filter filter) throws IOException;
+ 
+    long getKeyValueCount() throws IOException;
+ 
+}

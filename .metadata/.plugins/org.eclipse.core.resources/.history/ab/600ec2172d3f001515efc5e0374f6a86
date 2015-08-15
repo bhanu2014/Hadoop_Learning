@@ -1,0 +1,13 @@
+package com.hbase.practice;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class ListTables {
+	public void listTables(){
+		Configuration conf =  HBaseConfiguration.create();
+		
+		HBaseAdmin admin =new HBaseAdmin(conf);
+	}
+}

@@ -1,0 +1,22 @@
+package com.hbase.practice;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.ZooKeeperConnectionException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class DeleteTable {
+	public void deleteTable() throws MasterNotRunningException, ZooKeeperConnectionException, IOException{
+		Configuration conf =HBaseConfiguration.create();
+		HBaseAdmin admin=new HBaseAdmin(conf);
+		
+		admin.disableTable("student");
+		admin.deleteTable("student");
+		system.out.println("stuent table deleted");
+		
+		
+	}
+}

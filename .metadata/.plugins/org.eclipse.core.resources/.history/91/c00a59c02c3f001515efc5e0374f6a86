@@ -1,0 +1,7 @@
+package com.hbase.practice;
+
+public class ListTables {
+	public void listTables(){
+		Configuration conf = new HbaseConfiguration.Create();
+	}
+}
