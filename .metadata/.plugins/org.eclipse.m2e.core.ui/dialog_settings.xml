@@ -4,6 +4,7 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="org.sparkexamples"/>
 			<item value="com.hbase.endpoint"/>
 			<item value="com.endpoint.protobuffer"/>
 			<item value="com.hbase.observer"/>
@@ -14,6 +15,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="first-example"/>
 			<item value="coprocessor-endpoint"/>
 			<item value="protobuffer"/>
 			<item value="observer_coprocessor"/>
@@ -29,6 +31,7 @@
 			<item value="[groupId].[artifactId]-[version]"/>
 		</list>
 		<list key="version">
+			<item value="1.0-SNAPSHOT"/>
 			<item value="0.0.1-SNAPSHOT"/>
 		</list>
 	</section>
