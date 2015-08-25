@@ -1,7 +1,0 @@
-package com.hbase.practice;
-
-public class HadoopIntialize {
-	public static void main(String[] args){
-		
-	}
-}

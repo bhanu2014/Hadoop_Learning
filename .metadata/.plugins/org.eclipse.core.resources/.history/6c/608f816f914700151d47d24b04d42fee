@@ -1,0 +1,8 @@
+package sample.javaNew.example;
+
+public class MethodInfer {
+	static String[] name={"bhanuprathap","saranya"};
+	public static void main(String[] args){
+		name.forEach(System.out::println);
+	}
+}

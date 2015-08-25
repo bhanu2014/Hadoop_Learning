@@ -4,17 +4,18 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.hbase.coprocessor"/>
 			<item value="org.sparkexamples"/>
 			<item value="com.hbase.endpoint"/>
 			<item value="com.endpoint.protobuffer"/>
 			<item value="com.hbase.observer"/>
 			<item value="com.hadoop.endpoint"/>
 			<item value="Client_Endpoint"/>
-			<item value="com.hbase.coprocessor"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="preget-coprocessor"/>
 			<item value="first-example"/>
 			<item value="coprocessor-endpoint"/>
 			<item value="protobuffer"/>
@@ -31,8 +32,8 @@
 			<item value="[groupId].[artifactId]-[version]"/>
 		</list>
 		<list key="version">
-			<item value="1.0-SNAPSHOT"/>
 			<item value="0.0.1-SNAPSHOT"/>
+			<item value="1.0-SNAPSHOT"/>
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
@@ -56,6 +57,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\technical\Hadoop_Learning\first-example\src\main\java\org\spark\example\WordCount.java"/>
 			<item value="D:\technical\hadoop_workspace\observer_coprocessor\pom.xml"/>
 			<item value="D:\technical\hadoop_workspace\coprocessor"/>
 			<item value="D:\technical\hadoop_workspace\coprocessor\src\main\java\com\hbase\coprocessor\EndpointExample.java"/>

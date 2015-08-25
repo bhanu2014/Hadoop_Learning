@@ -1,10 +1,11 @@
 content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.recommenders.calls.rcp.proposalCategory.templates\u0000org.eclipse.mylyn.java.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.recommenders.chain.rcp.proposalCategory.chain\u0000
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.java.example.ArraySorter"><rhs name\="com.java.example.ArraySorter"/></lhs><lhs name\="com.java.example.PatientImpl"><rhs name\="com.java.example.PatientImpl"/></lhs><lhs name\="com.java.example.Patient"><rhs name\="com.java.example.Patient"/></lhs></history>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.java.example.ArraySorter"><rhs name\="com.java.example.ArraySorter"/></lhs><lhs name\="com.java.example.PatientImpl"><rhs name\="com.java.example.PatientImpl"/></lhs><lhs name\="com.java.example.Patient"><rhs name\="com.java.example.Patient"/></lhs><lhs name\="scala.Cloneable"><rhs name\="org.apache.spark.SparkConf"/></lhs><lhs name\="org.apache.spark.Logging"><rhs name\="org.apache.spark.SparkConf"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="org.apache.spark.SparkConf"/></lhs><lhs name\="org.apache.spark.SparkConf"><rhs name\="org.apache.spark.SparkConf"/></lhs><lhs name\="org.apache.spark.api.java.JavaSparkContextVarargsWorkaround"><rhs name\="org.apache.spark.api.java.JavaSparkContext"/></lhs><lhs name\="org.apache.spark.api.java.JavaSparkContext"><rhs name\="org.apache.spark.api.java.JavaSparkContext"/></lhs></history>
 content_assist_number_of_computers=19
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
 fontPropagated=true
+markOccurrences=false
 org.eclipse.jdt.ui.editor.tab.width=
 org.eclipse.jdt.ui.formatterprofiles.version=12
 org.eclipse.jdt.ui.javadoclocations.migrated=true

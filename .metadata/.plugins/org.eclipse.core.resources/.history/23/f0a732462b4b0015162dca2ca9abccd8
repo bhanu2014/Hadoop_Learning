@@ -1,0 +1,25 @@
+package com.spark.loganalyser;
+
+
+
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function2;
+
+import scala.Tuple2;
+
+import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
+public class LogAnalyzer {
+	@SuppressWarnings("unused")
+	private static Function2<Long,Long,Long> SUM_REDUCER=(a,b)->a+b;
+	
+	public static void main(String[] args){
+		
+	}
+	
+
+}

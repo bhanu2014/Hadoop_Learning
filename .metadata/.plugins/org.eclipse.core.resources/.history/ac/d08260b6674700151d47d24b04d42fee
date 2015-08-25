@@ -1,0 +1,5 @@
+package com.saurzcode.coprocessor;
+
+public class HBaseCoprocessor {
+
+}

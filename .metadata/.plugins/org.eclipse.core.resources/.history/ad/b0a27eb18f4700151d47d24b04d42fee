@@ -1,0 +1,14 @@
+package sample.javaNew.example;
+
+public class LamdaExp {
+	public static void main(String[] args){
+		
+		
+	}
+	interface MathOperation{
+		int operation(int a ,int b);
+	}
+	int operate(int a ,int b, Mathoperation mathoperation){
+		mathoperation.operation(a,b);
+	}
+}
