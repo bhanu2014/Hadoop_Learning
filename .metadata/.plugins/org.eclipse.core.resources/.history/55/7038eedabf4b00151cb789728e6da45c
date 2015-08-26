@@ -1,0 +1,48 @@
+package com.spark.loganalyser;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.api.java.JavaSQLContext;
+import org.apache.spark.sql.api.java.JavaSchemaRDD;
+
+import List;
+import scala.Tuple2;
+import scala.Tuple4;
+
+public class LogAnalyserSql {
+	public static void main(String[] arg){
+		SparkConf conf = new SparkConf().setAppName("LogAnalyserSql").setMaster("local");
+		JavaSparkContext sc= new JavaSparkContext(conf);
+		JavaSQLContext sqlsc= new JavaSQLContext(sc);
+		
+		String logfile="C:/Users/Vostro/Desktop/input/input.txt";
+		
+		JavaRDD<String> logfile_rdd=sc.textFile(logfile);
+		JavaRDD<ApacheAccessLog>  acesslogs=logfile_rdd.map(ApacheAccessLog::parseFromLogLine);
+		
+		
+		
+		JavaSchemaRDD schemaRdd=sqlsc.applySchema(acesslogs, ApacheAccessLog.class);
+		schemaRdd.registerTempTable("logs");
+		sqlsc.sqlContext().cacheTable("logs");
+		
+		Tuple4<Long, Long, Long, Long> contentSizeStats = sqlsc.sql("SELECT SUM(contentSize),COUNT(*),MIN(contentSize),MAX(contentSize) FROM logs")
+															.map(row -> new Tuple4<>(row.getLong(0),row.getLong(1),row.getLong(2),row.getLong(3)))
+															.first();
+		System.out.println(String.format("Content size AVG: %s,MIN:%s,Max:%s", contentSizeStats._1()/contentSizeStats._2(),contentSizeStats._3(),contentSizeStats._4()));
+		
+		
+		//compute response code to count
+		
+		List<Tuple2<Integer,Long>> responseCodeToCount =  
+		
+		
+		
+		
+		
+		
+		sc.stop();
+	}
+}

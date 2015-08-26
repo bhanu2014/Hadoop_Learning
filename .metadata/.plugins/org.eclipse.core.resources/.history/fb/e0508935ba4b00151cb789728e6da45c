@@ -1,0 +1,9 @@
+package com.spark.loganalyser;
+
+import org.apache.spark.SparkConf;
+
+public class LogAnalyserSql {
+	public static void main(String[] arg){
+		SparkConf conf = new SparkConf().setAppName("LogAnalyserSql").setMaster("local")
+	}
+}

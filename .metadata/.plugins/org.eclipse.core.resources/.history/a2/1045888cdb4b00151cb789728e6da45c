@@ -1,0 +1,24 @@
+package com.spark.learning;
+
+import org.apache.spark.api.java.function.Function;
+
+public class FUNCTIONS {
+	
+	public static Function<String, ApacheAccessLog> PARSE_LOG_LINE = new Function<String, ApacheAccessLog>() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 588151541411367331L;
+
+		public ApacheAccessLog call(String logline){
+			return ApacheAccessLog.parseFromLogLine(logline);
+		}
+	};
+	
+	public static Function<ApacheAccessLog, Long> GET_CONTENT_SIZE= new Function<ApacheAccessLog, Long>() {
+		public Long call(ApacheAccessLog acesslog){
+			
+			return acesslog.getContentSize();
+		}
+	};
+}

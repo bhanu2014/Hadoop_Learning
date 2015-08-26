@@ -1,0 +1,38 @@
+package com.spark.loganalyser;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.api.java.JavaSQLContext;
+import org.apache.spark.sql.api.java.JavaSchemaRDD;
+
+public class LogAnalyserSql {
+	public static void main(String[] arg){
+		SparkConf conf = new SparkConf().setAppName("LogAnalyserSql").setMaster("local");
+		JavaSparkContext sc= new JavaSparkContext(conf);
+		JavaSQLContext sqlsc= new JavaSQLContext(sc);
+		
+		String logfile="C:/Users/Vostro/Desktop/input/input.txt";
+		
+		JavaRDD<String> logfile_rdd=sc.textFile(logfile);
+		JavaRDD<ApacheAccessLog>  acesslogs=logfile_rdd.map(ApacheAccessLog::parseFromLogLine);
+		
+		
+		
+		JavaSchemaRDD schemaRdd=sqlsc.applySchema(acesslogs, ApacheAccessLog.class);
+		schemaRdd.registerTempTable("logs");
+		sqlsc.sqlContext().cacheTable(logs);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		sc.stop();
+	}
+}

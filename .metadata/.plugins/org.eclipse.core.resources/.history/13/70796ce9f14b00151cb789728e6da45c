@@ -1,0 +1,10 @@
+package com.spark.learning;
+
+public class SqlLogAnalyser {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

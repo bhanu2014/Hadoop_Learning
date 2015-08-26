@@ -1,0 +1,50 @@
+package com.spark.learning;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.api.java.JavaSQLContext;
+import org.apache.spark.sql.api.java.JavaSchemaRDD;
+import org.apache.spark.sql.api.java.Row;
+
+import scala.Tuple4;
+
+public class SqlLogAnalyser {
+
+	public static void main(String[] args) {
+		SparkConf conf = new SparkConf().setAppName("Basic log analyser").setMaster("local");
+		JavaSparkContext contx=new JavaSparkContext(conf);
+		SQLContext sqlctx=new SQLContext(contx);
+
+		String logFile="input_data/input.txt";
+
+		JavaRDD<String> logRdd=contx.textFile(logFile).cache();
+		//converting raw RDD to RDD of ApacheAcessLog objects
+		//			JavaRDD<ApacheAccessLog> acesslog =loRdd.map(FUNCTIONS.PARSE_LOG_LINE)
+		//												.filter(FUNCTIONS.EXCEPTION_CATCH);
+		//			
+		JavaRDD<ApacheAccessLog> acesslog=logRdd.map(new Function<String, ApacheAccessLog>() {
+
+			private static final long serialVersionUID = 1L;
+
+			public ApacheAccessLog call(String logline){
+				return ApacheAccessLog.parseFromLogLine(logline);
+			}
+		}).filter(new Function<ApacheAccessLog, Boolean>() {
+			private static final long serialVersionUID = 1L;
+			public Boolean call(ApacheAccessLog bean) throws Exception {
+				if(bean == null) {
+					return false;
+				}
+				return true;
+			}
+		});
+		
+		DataFrame sqlDataFrame=sqlctx.creat
+		
+		
+	}
+
+}

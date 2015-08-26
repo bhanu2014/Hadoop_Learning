@@ -1,0 +1,11 @@
+package com.spark.learning;
+
+import org.apache.spark.api.java.function.Function;
+
+public class FUNCTIONS {
+	public static Function<String, ApacheAccessLog> PARSE_LOG_LINE = new Function<String, ApacheAccessLog>() {
+		public ApacheAccessLog call(String logline){
+			return ApacheAccessLog.parseFromLogLine(logline);
+		}
+	};
+}

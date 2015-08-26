@@ -1,0 +1,38 @@
+package com.spark.learning;
+
+import io.netty.util.internal.chmv8.ConcurrentHashMapV8.Fun;
+
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.Function2;
+
+public class FUNCTIONS {
+	
+	public static Function<String, ApacheAccessLog> PARSE_LOG_LINE = new Function<String, ApacheAccessLog>() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 588151541411367331L;
+
+		public ApacheAccessLog call(String logline){
+			return ApacheAccessLog.parseFromLogLine(logline);
+		}
+	};
+	
+	public static Function<ApacheAccessLog, Long> GET_CONTENT_SIZE= new Function<ApacheAccessLog, Long>() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public Long call(ApacheAccessLog acesslog){
+			return acesslog.getContentSize();
+		}
+	};
+	
+	public static Function2<Long, Long, Long> SUM_REDUCER=new Function2<Long, Long, Long>() {
+		public Long call(Long a,Long b){
+			return a+b;
+		}
+	};
+	
+}
