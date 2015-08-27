@@ -4,6 +4,8 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.spark.sparkstreaming"/>
+			<item value="com.spark.learning"/>
 			<item value="com.hbase.coprocessor"/>
 			<item value="org.sparkexamples"/>
 			<item value="com.hbase.endpoint"/>
@@ -15,6 +17,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="SparkStreamingLearning"/>
+			<item value="LogAnalyserLearning"/>
 			<item value="preget-coprocessor"/>
 			<item value="first-example"/>
 			<item value="coprocessor-endpoint"/>
@@ -55,8 +59,22 @@
 			<item value="[groupId].[artifactId]-[version]"/>
 		</list>
 	</section>
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="Java8"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="Java8"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\technical\Hadoop_Learning\Java8\src\sample\javaNew\example\LogAnalyzerStreamingSQL.java"/>
 			<item value="D:\technical\Hadoop_Learning\first-example\src\main\java\org\spark\example\WordCount.java"/>
 			<item value="D:\technical\hadoop_workspace\observer_coprocessor\pom.xml"/>
 			<item value="D:\technical\hadoop_workspace\coprocessor"/>

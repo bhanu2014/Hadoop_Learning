@@ -1,0 +1,9 @@
+package com.spark.streaming;
+
+import org.apache.spark.SparkConf;
+
+public class LogAnalyzerStreamingSQL {
+	public static void main(String[] args){
+		SparkConf conf=new SparkConf().setAppName("Spark Streaming learning").setMaster("local");
+	}
+}

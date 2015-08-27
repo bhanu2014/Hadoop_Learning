@@ -1,0 +1,28 @@
+package sample.javaNew.example;
+
+public class loop {
+	static String one="64.242.88.10,india,second heighest populous country in the word,narendra modi";
+	static String two="74.542.98.30,america,super power in the world,barak obama";
+	static String three="52.562.68.77,russia,communist country in the world,putin";
+	static String four="44.592.56.34,england,colonial country in the world,mark vaughan";
+	static String five="35.675.48.39,korea,dangerous country in the world,kim john";
+	public static void main(String[] args){
+	int count=1;	
+		for(int i=0;i<count;i++){
+			System.out.println(five);
+			System.out.println(four);
+			System.out.println(three);
+			
+			for(int j=0;j<=2;j++){
+				System.out.println(two);
+				System.out.println(one);
+			}
+			count++;
+		}
+			
+		
+	}
+	public static int getRandom(int max){
+		 return (int) (Math.random()*max); 
+	}
+}

@@ -1,0 +1,16 @@
+package sample.javaNew.example;
+
+import java.util.StringTokenizer;
+
+public class StringSplit {
+
+	public static void main(String[] args) {
+		 StringTokenizer st = new StringTokenizer("35.675.48.39,korea,dangerous country in the world,kim john");  
+	        
+	      // printing next token  
+	      System.out.println("Next token is : " + st.nextToken(","));  
+	   }      
+
+	}
+
+
