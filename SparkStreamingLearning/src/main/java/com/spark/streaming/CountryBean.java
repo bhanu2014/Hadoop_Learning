@@ -1,8 +1,13 @@
 package com.spark.streaming;
 
+import java.io.Serializable;
 
 
-public class CountryBean {
+
+public class CountryBean implements Serializable {
+	
+	private static final long serialVersionUID = 4176038314600783599L;
+
 	private String ip;
 	private String country;
 	private String descrip;

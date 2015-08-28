@@ -39,17 +39,17 @@ public class Loop implements Runnable {
 			e1.printStackTrace();
 		}
 		PrintWriter pw = new PrintWriter(fw);
-		//pw.println("Hello World");
+		//System.out.println("Hello World");
 		
 		int count=1;	
 		for(int i=0;i<count;i++){
-			pw.println(input[getRandom(5)]);
-			pw.println(input[getRandom(5)]);
-			pw.println(input[getRandom(5)]);
+			System.out.println(input[getRandom(5)]);
+			System.out.println(input[getRandom(5)]);
+			System.out.println(input[getRandom(5)]);
 			
 			for(int j=0;j<=2;j++){
-				pw.println(input[getRandom(5)]);
-				pw.println(input[getRandom(5)]);
+				System.out.println(input[getRandom(5)]);
+				System.out.println(input[getRandom(5)]);
 				
 			}
 			count++;

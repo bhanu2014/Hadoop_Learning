@@ -1,5 +1,6 @@
 package com.spark.streaming;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.spark.SparkConf;
@@ -15,17 +16,18 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
 import scala.Tuple2;
 
-import com.spark.streaming.*;
 
 
+public class LogAnalyzerStreamingSQL implements Serializable {
+	private static final long serialVersionUID = 5221730303761091083L;
 
-public class LogAnalyzerStreamingSQL {
 	private static final Duration WINDOW_LENGTH = new Duration(30 * 1000);
 	// Stats will be computed every slide interval time.
 	private static final Duration SLIDE_INTERVAL = new Duration(10 * 1000);
 	@SuppressWarnings({ "resource", "serial" })
 	public static void main(String[] args){
-		SparkConf conf=new SparkConf().setAppName("Spark Streaming learning").setMaster("local");
+		System.out.println("streaming started...............................");
+		SparkConf conf=new SparkConf().setAppName("Spark Streaming learning").setMaster("local[4]");
 		JavaSparkContext spctx=new JavaSparkContext(conf);
 		JavaStreamingContext jssc=new JavaStreamingContext(spctx,SLIDE_INTERVAL);
 		JavaReceiverInputDStream<String> logDataStream=jssc.socketTextStream("localhost",9999);
@@ -45,11 +47,20 @@ public class LogAnalyzerStreamingSQL {
 				return true;
 			}
 		});
+		accesslogDstream.print();
+		System.out.println("streaming to be started...............................");
 		JavaDStream<CountryBean> windowDstream=accesslogDstream.window(WINDOW_LENGTH,SLIDE_INTERVAL);
-
+		
+		windowDstream.print();
+		System.out.println("streaming starting..................................");
 		windowDstream.foreachRDD(new Function<JavaRDD<CountryBean>, Void>() {
+
 			@Override
 			public Void call(JavaRDD<CountryBean> accessLogs) {
+				System.out.println("in eachRDD...............................");
+				
+				testMethod(accessLogs);
+				
 				if (accessLogs.count() == 0) {
 					System.out.println("No access logs in this time interval");
 					//return null;
@@ -57,6 +68,7 @@ public class LogAnalyzerStreamingSQL {
 				else{
 					System.out.println("its working: Count:"+accessLogs.count());
 				}
+				accessLogs.saveAsTextFile("/home/bhanu/spark/projects/data/");
 				List<Tuple2<String,Long>> LeadersToCount=accessLogs.mapToPair(new PairFunction<CountryBean, String,Long>() {
 
 					private static final long serialVersionUID = -5180343107682307962L;
@@ -72,16 +84,28 @@ public class LogAnalyzerStreamingSQL {
 					}
 				}).collect();
 
-				System.out.println("Leaders count: "+LeadersToCount);
+				System.out.println("Leaders count: "+LeadersToCount.toString());
+				
+			
 				//return null;
 				return null;
-
-
-
 			}
-
 		});
+		System.out.println("streaming ending...............................");
+		windowDstream.count();
+		
+		System.out.println("------ windowDstream count: "+windowDstream.count());
 		jssc.start();
 		jssc.awaitTermination();
+		System.out.println("streaming to be ending...............................");
+	}
+	
+	static int i = 0;
+	private static void testMethod(JavaRDD<CountryBean> rdd) {
+		i++;
+		System.out.println("---- testMethod() called for "+i+" time");
+		if(rdd.count() == 0) {
+			System.out.println("---- This RDD has no values");
+		}
 	}
 }
