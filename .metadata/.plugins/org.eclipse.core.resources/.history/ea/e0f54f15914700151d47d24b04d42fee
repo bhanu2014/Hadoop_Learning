@@ -1,6 +1,0 @@
-package sample.javaNew.example;
-
-public class MethodInfer {
-	String name="bhanuprathap";
-	public static void main(String[] args){}
-}

@@ -1,5 +1,0 @@
-package com.spark.streaming;
-
-public class LogAnalyzerStreamingSQL {
-
-}

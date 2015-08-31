@@ -1,0 +1,54 @@
+package com.streaming.cummulativeSum;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.streaming.Duration;
+import org.apache.spark.streaming.api.java.JavaDStream;
+import org.apache.spark.streaming.api.java.JavaInputDStream;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
+
+import com.spark.streaming.CountryBean;
+
+public class LogAnalyserStreamingTotal {
+	public static void main(String[] args){
+	SparkConf conf=new SparkConf().setAppName("Log Analyser Streaming Total").setMaster("local[4]");
+	JavaSparkContext cntx=new JavaSparkContext(conf);
+	JavaStreamingContext jssc=new JavaStreamingContext(cntx, new Duration(10000));
+	
+	jssc.checkpoint("/home/bhanu/spark/checkpointDirectory/");
+	
+	JavaInputDStream<String> logDataStream =jssc.socketTextStream("localhost",9999);
+	
+	JavaDStream<CountryBean> countryLogStream =logDataStream.map(new Function<String, CountryBean>() {
+		public CountryBean call(String line){
+			return CountryBean.parseStreamLine(line);
+		}
+	}).filter(new Function<CountryBean, Boolean>() {
+		private static final long serialVersionUID = 1L;
+		public Boolean call(CountryBean bean) throws Exception {
+			if(bean == null) {
+				return false;
+			}
+			return true;
+		}
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		}	
+	}

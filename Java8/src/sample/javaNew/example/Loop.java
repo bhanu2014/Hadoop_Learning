@@ -9,11 +9,11 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class Loop implements Runnable {
-	static String[] input={"64.242.88.10,india,second heighest populous country in the word,narendra modi"
-							,"74.542.98.30,america,super power in the world,barak obama"
-							,"52.562.68.77,russia,communist country in the world,putin"
-							,"44.592.56.34,england,colonial country in the world,mark vaughan"
-							,"35.675.48.39,korea,dangerous country in the world,kim john"};
+	static String[] input={"64.242.88.10,india,second heighest populous country in the word,narendra modi,452452"
+							,"74.542.98.30,america,super power in the world,barak obama,525245"
+							,"52.562.68.77,russia,communist country in the world,putin,545454"
+							,"44.592.56.34,england,colonial country in the world,mark vaughan,542434"
+							,"35.675.48.39,korea,dangerous country in the world,kim john,354543"};
 	
 	
 	

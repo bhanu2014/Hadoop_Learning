@@ -1,0 +1,110 @@
+package com.streaming.cummulativeSum;
+
+import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.streaming.Duration;
+import org.apache.spark.streaming.api.java.JavaDStream;
+import org.apache.spark.streaming.api.java.JavaInputDStream;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
+
+import com.esotericsoftware.kryo.serializers.FieldSerializer.Optional;
+
+//import com.spark.streaming.CountryBean;
+
+@SuppressWarnings("serial")
+public class LogAnalyserStreamingTotal implements Serializable{
+	
+	public static final AtomicLong runningCount=new AtomicLong(0);
+	public static final AtomicLong runningSum=new AtomicLong(0);
+	public static final AtomicLong runningMin=new AtomicLong(Long.MIN_VALUE);
+	public static final AtomicLong runningMax=new AtomicLong(Long.MAX_VALUE);
+	
+	public static Function2<List<Long>,Optional<Long>,Optional<Long>>
+	
+	@SuppressWarnings("serial")
+	public static Function2<Long,Long,Long> SUM_REDUCER=new Function2<Long, Long, Long>() {
+		public Long call(Long a ,Long b){
+			return a+b;
+		}
+	};
+	
+	public static class LongComparator
+	implements Comparator<Long>, Serializable {
+
+		@Override
+		public int compare(Long a, Long b) {
+			if (a > b) return 1;
+			if (a.equals(b)) return 0;
+			return -1;
+		}
+	}
+	  public static Comparator<Long> LONG_NATURAL_ORDER_COMPARATOR =
+		      new LongComparator();
+	@SuppressWarnings("serial")
+	public static void main(String[] args){
+		SparkConf conf=new SparkConf().setAppName("Log Analyser Streaming Total").setMaster("local[4]");
+		JavaSparkContext cntx=new JavaSparkContext(conf);
+		JavaStreamingContext jssc=new JavaStreamingContext(cntx, new Duration(10000));
+
+		jssc.checkpoint("/home/bhanu/spark/checkpointDirectory/");
+
+		JavaInputDStream<String> logDataStream =jssc.socketTextStream("localhost",9999);
+
+		JavaDStream<CountryBean> countryLogStream =logDataStream.map(new Function<String, CountryBean>() {
+			public CountryBean call(String line){
+				return CountryBean.parseStreamLine(line);
+			}
+		}).filter(new Function<CountryBean, Boolean>() {
+			private static final long serialVersionUID = 1L;
+			public Boolean call(CountryBean bean) throws Exception {
+				if(bean == null) {
+					return false;
+				}
+				return true;
+			}
+		});
+		
+		JavaDStream<Long> GDPStream=countryLogStream.map(new Function<CountryBean, Long>() {
+			public Long call(CountryBean cbean){
+				return cbean.getGDP();
+			}
+		});
+
+
+		GDPStream.foreach(new Function<JavaRDD<Long>, Void>() {
+			public Void call(JavaRDD<Long> rdd)throws Exception{
+				if(rdd.count()>0){
+					runningSum.getAndAdd(rdd.reduce(SUM_REDUCER));
+					runningCount.getAndAdd(rdd.count());
+					runningMin.set(Math.min(runningMin.get(), rdd.min(LONG_NATURAL_ORDER_COMPARATOR)));
+					runningMax.set(Math.max(runningMax.get(),rdd.min(LONG_NATURAL_ORDER_COMPARATOR)));
+					
+					System.out.println("GDP Avg is: "+runningSum.get()/runningCount.get());
+					System.out.println("GDP Min is: "+runningMin.get());
+					System.out.println("GDP Max is: "+runningMax.get());
+				}
+				return null;
+			}
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+	}	
+}
