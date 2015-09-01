@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.spark.hbase</groupId>
+  <artifactId>SparkWithHbase</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  <dependency> <!-- Spark -->
+		    <groupId>org.apache.spark</groupId>
+		    <artifactId>spark-core_2.10</artifactId>
+		    <version>1.4.0</version>
+	</dependency>
+	<dependency> <!-- Spark SQL -->
+	    <groupId>org.apache.spark</groupId>
+	    <artifactId>spark-sql_2.10</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	
+	<dependency>
+             <groupId>org.apache.hbase</groupId>
+             <artifactId>hbase-client</artifactId>
+             <version>0.98.6-hadoop2</version>
+    </dependency>
+    <dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-protocol</artifactId>
+			<version>0.98.6-cdh5.3.0</version>
+		</dependency>
+  	<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-server</artifactId>
+			<version>0.98.6-cdh5.3.0</version>
+		</dependency>
+	<dependency>
+	  <groupId>com.cloudera</groupId>
+	  <artifactId>spark-hbase</artifactId>
+	  <version>0.0.2-clabs</version>
+	</dependency>
+	<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-hadoop-compat</artifactId>
+			<version>0.98.6-cdh5.3.0</version>
+			<!-- <scope>test</scope> Return-->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-common</artifactId>
+			<version>0.98.6-cdh5.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-hadoop2-compat</artifactId>
+			<version>0.98.6-cdh5.3.0</version>
+			<!-- <scope>runtime</scope> --> 
+		</dependency>
+		
+
+	
+    <dependency>
+	    <groupId>jdk.tools</groupId>
+	    <artifactId>jdk.tools</artifactId>
+	    <scope>system</scope>
+	    <systemPath>C:/Users/Vostro/Downloads/Compressed/tools-1.7.0.jar</systemPath>
+	    <version>1.7</version>
+	</dependency>
+  </dependencies>
+  <build>
+  	<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                   <archive>
+                       <manifest>
+                           <addClasspath>true</addClasspath>
+                           <classpathPrefix>lib/</classpathPrefix>
+                           <mainClass>com.spark.hbase.SparkHbaseBulkInsert</mainClass>
+                       </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+  </build>
+  <repositories>
+		<repository>
+			<id>maven-hadoop</id>
+			<name>Hadoop Releases</name>
+			<url>https://repository.cloudera.com/content/repositories/releases/</url>
+		</repository>
+		<repository>
+		    <id>cloudera-repo-releases</id>
+		    <url>https://repository.cloudera.com/artifactory/repo/</url>
+  		</repository>
+	</repositories>
+  <distributionManagement>
+    <repository>
+      <id>cdh.releases.repo</id>
+      <url>http://maven.jenkins.cloudera.com:8081/artifactory/cdh-staging-local</url>
+      <name>CDH Releases Repository</name>
+    </repository>
+    <snapshotRepository>
+      <id>cdh.snapshots.repo</id>
+      <url>http://maven.jenkins.cloudera.com:8081/artifactory/cdh-snapshot-local</url>
+      <name>CDH Snapshots Repository</name>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

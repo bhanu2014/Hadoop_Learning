@@ -1,0 +1,66 @@
+package com.spark.hbase;
+
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.Function2;
+import org.apache.hadoop.hbase.util.Bytes;
+import com.cloudera.spark.hbase.JavaHBaseContext;
+
+
+//import com.spark.learning.ApacheAccessLog;
+
+public class SparkHbaseBulkInsert {
+	
+	@SuppressWarnings({ "resource", "serial", "deprecation", "static-access", "unused" })
+	public static void main(String[] args){
+		SparkConf conf=new SparkConf().setAppName("spark hbase bulk insert").setMaster("local[4]");
+		JavaSparkContext ctx=new JavaSparkContext(conf);
+		
+		JavaRDD<String> logData=ctx.textFile("input_data/input.txt");
+		
+		System.out.println("log data count"+logData.count());
+		
+		JavaRDD<ApacheAccessLog> accessLogRDD=logData.map(new Function<String, ApacheAccessLog>() {
+			public ApacheAccessLog call(String line){
+				return ApacheAccessLog.parseFromLogLine(line);
+			}
+		}).filter(new Function<ApacheAccessLog, Boolean>() {
+			private static final long serialVersionUID = 1L;
+			public Boolean call(ApacheAccessLog bean) throws Exception {
+				if(bean == null) {
+					return false;
+				}
+				return true;
+			}
+		});
+		
+	
+		Configuration hconf = HBaseConfiguration.create();
+		hconf.addResource(new Path("/etc/hbase/conf/core-site.xml"));
+		hconf.addResource(new Path("/etc/hbase/conf/hbase-site.xml"));
+		
+		JavaHBaseContext hbaseContext =new JavaHBaseContext(ctx,hconf);
+		
+		hbaseContext.bulkPut(logData,"countryLog",new PutFunction(), true);
+		}
+		@SuppressWarnings("serial")
+		public static class PutFunction implements Function<String, Put>{
+			int rowkey=1;
+			@Override
+			public Put call(String logline) throws Exception {
+				String[] cell=logline.split(",");
+				 Put put = new Put(Bytes.toBytes(rowkey));
+				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("ip")),(Bytes.toBytes( cell[0])));
+				rowkey++;
+				return null;
+			}
+			
+		}
+}

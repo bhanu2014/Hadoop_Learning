@@ -4,6 +4,8 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.spark.cummulativecalucation"/>
+			<item value="com.logGenerator"/>
 			<item value="com.spark.sparkstreaming"/>
 			<item value="com.spark.learning"/>
 			<item value="com.hbase.coprocessor"/>
@@ -17,6 +19,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="cummulativecalucation"/>
+			<item value="logGenerator"/>
 			<item value="SparkStreamingLearning"/>
 			<item value="LogAnalyserLearning"/>
 			<item value="preget-coprocessor"/>
@@ -61,11 +65,13 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="com.Spark.StreamingCummulativeCals"/>
 			<item value="Java8"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="StreamingCummulativeCals"/>
 			<item value="Java8"/>
 		</list>
 		<list key="version">
@@ -74,6 +80,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\technical\Hadoop_Learning\StreamingCummulativeCals\src\com"/>
+			<item value="D:\technical\Hadoop_Learning\Java8\src\sample\javaNew\example\LogGenerator.java"/>
 			<item value="D:\technical\Hadoop_Learning\Java8\src\sample\javaNew\example\LogAnalyzerStreamingSQL.java"/>
 			<item value="D:\technical\Hadoop_Learning\first-example\src\main\java\org\spark\example\WordCount.java"/>
 			<item value="D:\technical\hadoop_workspace\observer_coprocessor\pom.xml"/>

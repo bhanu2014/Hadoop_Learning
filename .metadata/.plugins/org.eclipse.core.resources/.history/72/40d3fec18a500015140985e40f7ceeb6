@@ -1,0 +1,7 @@
+package com.hbase.practice;
+
+public class SparkHbaseBulkInsert {
+	public static void main(String[] args){
+		
+	}
+}

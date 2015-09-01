@@ -1,8 +1,0 @@
-package com.streaming.cummulativeSum;
-
-import org.apache.spark.SparkConf;
-
-public class LogAnalyserStreamingTotal {
-	SparkConf conf=new SparkConf().setAppName("Log Analyser Streaming Total");
-	
-}	

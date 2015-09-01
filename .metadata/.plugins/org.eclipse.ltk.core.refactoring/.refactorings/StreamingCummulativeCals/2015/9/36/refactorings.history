@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CountryBean.java&apos; to &apos;SparkWithHbase/src/main/java/com.spark.hbase&apos;&#x0D;&#x0A;- Original project: &apos;StreamingCummulativeCals&apos;&#x0D;&#x0A;- Destination element: &apos;SparkWithHbase/src/main/java/com.spark.hbase&apos;&#x0D;&#x0A;- Original element: &apos;CountryBean.java&apos;" description="Copy file" destination="=SparkWithHbase/src\/main\/java&lt;com.spark.hbase" element1="src/com/streaming/cummulativeSum/CountryBean.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1441104464909" units="0" version="1.0"/>
+</session>

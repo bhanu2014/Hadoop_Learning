@@ -1,0 +1,9 @@
+package com.hbase.practice;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+
+public class SparkHbaseBulkInsert {
+	public static void main(String[] args){
+		Configurtion conf=new HBaseConfiguration().create();
+	}
+}
