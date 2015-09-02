@@ -1,0 +1,31 @@
+package com.spark.hbase;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+
+import com.cloudera.spark.hbase.JavaHBaseContext;
+
+public class SparkHbaseBulkGet {
+	public static void  main(String[] args){
+		SparkConf conf=new SparkConf().setAppName("Spark with hbase bulk get").setMaster("local[4]");
+		JavaSparkContext ctx=new JavaSparkContext(conf);
+		Configuration hconf=HBaseConfiguration.create();
+		JavaHBaseContext hctx=new JavaHBaseContext(ctx, hconf);
+		JavaRDD<String> rdd=new JavaRDD<String>;
+		hctx.bulkGet("countryLog", 3, , new GetFunction(), new ResultFunction());
+	}
+	
+	@SuppressWarnings("serial")
+	public static class GetFunction implements Function<byte[],Get>{
+
+		public Get call(byte[] v) throws Exception {
+			// TODO Auto-generated method stub
+			return new Get(v);
+		}
+	}
+}

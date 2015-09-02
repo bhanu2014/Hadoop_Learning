@@ -14,11 +14,17 @@
 	    <artifactId>spark-sql_2.10</artifactId>
 	    <version>1.4.0</version>
 	</dependency>
-	
+	<dependency>
+	<groupId>org.apache.hadoop</groupId>
+	<artifactId>hadoop-common</artifactId>
+	<version>2.7.0</version>
+	</dependency>
+
+
 	<dependency>
              <groupId>org.apache.hbase</groupId>
              <artifactId>hbase-client</artifactId>
-             <version>0.98.6-hadoop2</version>
+             <version>0.98.6-cdh5.3.0</version>
     </dependency>
     <dependency>
 			<groupId>org.apache.hbase</groupId>
@@ -35,15 +41,15 @@
 	  <artifactId>spark-hbase</artifactId>
 	  <version>0.0.2-clabs</version>
 	</dependency>
-
-	
-    <dependency>
+	<dependency>
 	    <groupId>jdk.tools</groupId>
 	    <artifactId>jdk.tools</artifactId>
 	    <scope>system</scope>
-	    <systemPath>/usr/java/jdk1.7.0_67-cloudera/lib/tools.jar</systemPath>
+	    <systemPath>C:/Users/Vostro/Desktop/input/tools.jar</systemPath>
 	    <version>1.7</version>
 	</dependency>
+	
+	    
   </dependencies>
   <build>
   	<plugins>
@@ -64,7 +70,7 @@
                        <manifest>
                            <addClasspath>true</addClasspath>
                            <classpathPrefix>lib/</classpathPrefix>
-                           <mainClass>com.spark.hbase.SparkHbaseBulkInsert</mainClass>
+                           <mainClass>com.spark.hbase.SparkHbaseBulkGet</mainClass>
                        </manifest>
                     </archive>
                 </configuration>

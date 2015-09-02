@@ -1,0 +1,82 @@
+package com.spark.hbase;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.KeyValue;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
+import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+
+import scala.Tuple2;
+
+import java.util.Iterator;
+import java.util.List;
+
+import akka.dispatch.Foreach;
+
+import com.cloudera.spark.hbase.JavaHBaseContext;
+
+public class SparkHbaseBulkGet {
+	@SuppressWarnings({ "unused", "serial" })
+	public static void  main(String[] args){
+		SparkConf conf=new SparkConf().setAppName("Spark with hbase bulk get").setMaster("local[4]");
+		JavaSparkContext ctx=new JavaSparkContext(conf);
+		Configuration hconf=HBaseConfiguration.create();
+		hconf.addResource(new Path("/etc/hbase/conf.cloudera.yarn/core-site.xml"));
+		hconf.addResource(new Path("/etc/hbase/conf.cloudera.hbase/hbase-site.xml"));
+		JavaHBaseContext hctx=new JavaHBaseContext(ctx, hconf);
+		Scan scan=new Scan();
+		
+		JavaRDD<byte[]> rdd=hctx.hbaseRDD("countryLog", scan, new Function<Tuple2<ImmutableBytesWritable,Result>, byte[]>() {
+
+			public byte[] call(Tuple2<ImmutableBytesWritable, Result> result)throws Exception {
+					
+				return result._2.getRow();
+			}
+				
+		});
+		 JavaRDD<CountryBean> records= hctx.bulkGet("countryLog", 3,rdd , new GetFunction(), new ResultFunction());
+	}
+	
+	@SuppressWarnings("serial")
+	public static class GetFunction implements Function<byte[],Get>{
+
+		public Get call(byte[] v) throws Exception {
+			// TODO Auto-generated method stub
+			return new Get(v);
+		}
+	}
+	
+	public static class ResultFunction implements Function<Result,CountryBean>{
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public CountryBean call(Result result) throws Exception {
+			CountryBean cbean=new CountryBean();	
+			cbean.setIp(Bytes.toString(result.getValue(Bytes.toBytes("acessLogs"),Bytes.toBytes("ip"))));
+			cbean.setCountry(Bytes.toString(result.getValue(Bytes.toBytes("acessLogs"),Bytes.toBytes("country"))));
+			cbean.setDescrip(Bytes.toString(result.getValue(Bytes.toBytes("acessLogs"),Bytes.toBytes("descrip"))));
+			cbean.setLeader(Bytes.toString(result.getValue(Bytes.toBytes("acessLogs"),Bytes.toBytes("leader"))));
+			cbean.setGDP(Bytes.toString(result.getValue(Bytes.toBytes("acessLogs"),Bytes.toBytes("GDP")));
+			
+			
+			
+		n();
+				cbean.setIp(c.getValueArray().);
+//				System.out.println("column family: "+Bytes.toString(c.getFamilyArray()));
+//				System.out.println("column: "+Bytes.toString(c.getQualifierArray()));
+//				System.out.println("value: "+Bytes.toString(c.getValueArray()));
+			
+			return null;
+		}
+		
+	}
+}

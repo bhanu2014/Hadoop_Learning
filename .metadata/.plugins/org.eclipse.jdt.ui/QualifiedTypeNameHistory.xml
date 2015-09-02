@@ -43,7 +43,6 @@
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="org.apache.spark.api.java.JavaRDD"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.esotericsoftware.kryo.serializers.FieldSerializer.Optional"/>
 <fullyQualifiedTypeName name="org.apache.spark.api.java.function.Function2"/>
 <fullyQualifiedTypeName name="scala.Tuple2"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="org.apache.spark.api.java.function.Function"/>
 <fullyQualifiedTypeName name="org.apache.spark.streaming.api.java.JavaReceiverInputDStream"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

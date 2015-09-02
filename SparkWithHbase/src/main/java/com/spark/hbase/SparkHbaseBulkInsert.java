@@ -38,17 +38,15 @@ public class SparkHbaseBulkInsert {
 		}
 		@SuppressWarnings("serial")
 		public static class PutFunction implements Function<String, Put>{
-			int rowkey=1;
 			@Override
 			public Put call(String logline) throws Exception {
 				String[] cell=logline.split(",");
-				 Put put = new Put(Bytes.toBytes(rowkey));
+				 Put put = new Put(Bytes.toBytes(System.currentTimeMillis()));
 				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("ip")),(Bytes.toBytes( cell[0])));
 				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("country")),(Bytes.toBytes( cell[1])));
 				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("descrip")),(Bytes.toBytes( cell[2])));
 				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("leader")),(Bytes.toBytes( cell[3])));
 				 put.add((Bytes.toBytes("logFields")),(Bytes.toBytes("GDP")),(Bytes.toBytes( cell[4])));
-				rowkey++;
 				return put;
 			}
 			

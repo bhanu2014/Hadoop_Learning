@@ -12,11 +12,11 @@ public class CountryBean implements Serializable {
 	private String country;
 	private String descrip;
 	private String leader;
-	private Long GDP;
-	public Long getGDP() {
+	private String GDP;
+	public String getGDP() {
 		return GDP;
 	}
-	public void setGDP(Long gDP) {
+	public void setGDP(String gDP) {
 		GDP = gDP;
 	}
 	public String getIp() {
@@ -55,9 +55,12 @@ public class CountryBean implements Serializable {
 		cbean.setCountry(splitted[1]);
 		cbean.setDescrip(splitted[2]);
 		cbean.setLeader(splitted[3]);
-		cbean.setGDP((long) Integer.parseInt(splitted[4]));
+		cbean.setGDP(splitted[4]);
 
 		return cbean;
 		
+	}
+	public static CountryBean getBean(CountryBean cb){
+		return cb;
 	}
 }

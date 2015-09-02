@@ -1,7 +1,0 @@
-package com.spark.loganalyser;
-
-import java.io.Serializable;
-
-public class ApacheAccessLog implements Serializable {
-
-}
