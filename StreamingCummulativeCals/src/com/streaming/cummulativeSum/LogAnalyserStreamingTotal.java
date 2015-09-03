@@ -117,7 +117,7 @@ public class LogAnalyserStreamingTotal implements Serializable{
 			public Tuple2<String, Long> call(CountryBean cbean){
 				return new Tuple2<String, Long>(cbean.getLeader(),1L);
 			}
-		}).reduceByKey(SUM_REDUCER)
+		})
 		.updateStateByKey(COMPUTE_RUNNING_SUM);
 		
 		leaderCountStream.foreach(new Function<JavaPairRDD<String,Long>, Void>() {

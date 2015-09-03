@@ -65,12 +65,16 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="com.javaJerseyExample"/>
+			<item value="com.java.JersyApi"/>
 			<item value="com.Spark.StreamingCummulativeCals"/>
 			<item value="Java8"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="JerseyExample"/>
+			<item value="JersyApi"/>
 			<item value="StreamingCummulativeCals"/>
 			<item value="Java8"/>
 		</list>

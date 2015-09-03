@@ -1,0 +1,13 @@
+package net.gazsi.laszlo.sandbox.ws;
+import javax.ws.rs.GET;  
+import javax.ws.rs.Path;  
+import javax.ws.rs.PathParam;
+
+@Path("hello")
+public class RestExample {
+	@Get
+	@Path("{name}")
+	public String sayHello(String name){
+		return null;
+	}
+}
