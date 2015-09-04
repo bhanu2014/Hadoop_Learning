@@ -1,5 +1,0 @@
-package com.spark.hbase;
-
-public class SparkHbaseBulkGet {
-
-}
