@@ -1,0 +1,26 @@
+package com.bimarianDev.truckDataIngestion;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.spark.api.java.JavaRDD;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
+public class TruckJsonToObject {
+
+	public static JavaRDD<TruckBean> getTruckData(String path) throws JsonIOException, JsonSyntaxException, FileNotFoundException {
+
+		
+			JavaRDD<TruckBean> data = new Gson().fromJson(new FileReader(path), new TypeToken<List<TruckBean>>(){}.getType());
+		    return data;
+}
+	}
+
+
+

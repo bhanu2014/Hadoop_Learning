@@ -1,0 +1,9 @@
+package com.dev.gson;
+
+public class EmployeeBean {
+	private String  VNo;
+	private String groupId;
+	private int deploymentId;
+	
+	
+}

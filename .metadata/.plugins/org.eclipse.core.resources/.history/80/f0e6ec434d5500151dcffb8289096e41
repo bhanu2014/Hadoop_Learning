@@ -1,0 +1,16 @@
+package com.dev.gson;
+
+import java.sql.Time;
+
+public class EmployeeBean {
+	private String  VNo;
+	private String groupId;
+	private int deploymentId;
+	private String Time;
+	private String Acc;
+	private String Lat;
+	private String Lon;
+	private int Speed;
+	
+	
+}

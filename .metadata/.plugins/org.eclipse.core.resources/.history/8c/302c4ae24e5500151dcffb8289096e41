@@ -1,0 +1,29 @@
+package com.dev.gson;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+public class GsonToObject {
+
+	public static void main(String] args) {
+
+		try {
+
+			List<TruckBean> data = new Gson().fromJson(new FileReader("C:/Users/Vostro/Desktop/input/employee.json"), new TypeToken<List<TruckBean>>(){}.getType());
+		    for(TruckBean b:data){
+			System.out.println("emloyee: "+b.toString());
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    }
+	
+
+
+

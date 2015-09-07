@@ -1,0 +1,135 @@
+package com.dev.gson;
+
+import java.security.Timestamp;
+import java.sql.Time;
+import java.util.Arrays;
+
+public class TruckBean {
+	private String  VNo;
+	private String groupId;
+	private String deploymentId;
+	private String Time;
+	private String Acc;
+	private double Lat;
+	private double Lon;
+	private double Speed;
+	private int Angle;
+	private String Locate;
+	private double Oil;
+	private double Weight;
+	private double Mile;
+	private int version;
+	private String timestamp;
+	private String Location;
+	public String getVNo() {
+		return VNo;
+	}
+	public void setVNo(String vNo) {
+		VNo = vNo;
+	}
+	public String getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+	public String getDeploymentId() {
+		return deploymentId;
+	}
+	public void setDeploymentId(String deploymentId) {
+		this.deploymentId = deploymentId;
+	}
+	public String getTime() {
+		return Time;
+	}
+	public void setTime(String time) {
+		Time = time;
+	}
+	public String getAcc() {
+		return Acc;
+	}
+	public void setAcc(String acc) {
+		Acc = acc;
+	}
+	public double getLat() {
+		return Lat;
+	}
+	public void setLat(double lat) {
+		Lat = lat;
+	}
+	public double getLon() {
+		return Lon;
+	}
+	public void setLon(double lon) {
+		Lon = lon;
+	}
+	public double getSpeed() {
+		return Speed;
+	}
+	public void setSpeed(double speed) {
+		Speed = speed;
+	}
+	public int getAngle() {
+		return Angle;
+	}
+	public void setAngle(int angle) {
+		Angle = angle;
+	}
+	public String getLocate() {
+		return Locate;
+	}
+	public void setLocate(String locate) {
+		Locate = locate;
+	}
+	public double getOil() {
+		return Oil;
+	}
+	public void setOil(double oil) {
+		Oil = oil;
+	}
+	public double getWeight() {
+		return Weight;
+	}
+	public void setWeight(double weight) {
+		Weight = weight;
+	}
+	public double getMile() {
+		return Mile;
+	}
+	public void setMile(double mile) {
+		Mile = mile;
+	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	public String getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+	public String getLocation() {
+		return Location;
+	}
+	public void setLocation(String location) {
+		Location = location;
+	}
+	@Override
+	public String toString() {
+		return "EmployeeBean [VNo=" + VNo + ", groupId=" + groupId
+				+ ", deploymentId=" + deploymentId + ", Time=" + Time
+				+ ", Acc=" + Acc + ", Lat=" + Lat + ", Lon=" + Lon + ", Speed="
+				+ Speed + ", Angle=" + Angle + ", Locate=" + Locate + ", Oil="
+				+ Oil + ", Weight=" + Weight + ", Mile=" + Mile + ", version="
+				+ version + ", timestamp=" + timestamp + ", Location="
+				+ Location + "]";
+	}
+	
+	
+	
+	
+	
+}

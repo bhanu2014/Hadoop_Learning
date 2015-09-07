@@ -1,0 +1,5 @@
+package com.bimarianDev.truckDataIngestion;
+
+public class TruckDataBulkInsert {
+
+}

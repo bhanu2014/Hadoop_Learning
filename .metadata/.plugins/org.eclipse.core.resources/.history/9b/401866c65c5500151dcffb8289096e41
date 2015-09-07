@@ -1,0 +1,50 @@
+package com.bimarianDev.truckDataIngestion;
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Row;
+import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.spark.SparkConf;
+import org.apache.spark.SparkContext;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.PairFunction;
+import org.apache.spark.rdd.RDD;
+import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.api.java.JavaSQLContext;
+import org.apache.spark.sql.api.java.JavaSchemaRDD;
+
+import scala.Function1;
+import scala.Tuple2;
+
+import com.cloudera.spark.hbase.JavaHBaseContext;
+//import com.spark.hbase.SparkHbaseBulkInsert.PutFunction;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
+@SuppressWarnings("serial")
+public class TruckDataBulkInsert implements Serializable{
+	@SuppressWarnings({ })
+	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, FileNotFoundException{
+		SparkConf conf=new SparkConf().setAppName("Truck Data Bulk Insert").setMaster("local");
+	JavaSparkContext ctx=new JavaSparkContext(conf);
+	String path="C:/Users/Vostro/Desktop/input/employee.json";
+	
+	List<TruckBean> truckBean=TruckJsonToObject.getTruckData(path);
+	JavaRDD<TruckBean> truck=ctx.parallelize(truckBean);
+	
+		System.out.println("log data count"+truck.count());
+
+		
+	
+
+		ctx.close();
+		}
+}

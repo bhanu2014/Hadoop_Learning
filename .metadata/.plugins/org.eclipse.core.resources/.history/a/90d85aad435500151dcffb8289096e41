@@ -1,0 +1,32 @@
+package com.dev.gson;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.google.gson.Gson;
+
+public class GsonToObject {
+
+	public static void main(String[] args) {
+		Gson gson = new Gson();
+
+		try {
+
+			BufferedReader br = new BufferedReader(
+				new FileReader("C:/Users/Vostro/Desktop/input/employee.json"));
+
+			//convert the json string back to object
+			EmployeeBean obj = gson.fromJson(br, EmployeeBean.class);
+
+			System.out.println(obj.toString());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    }
+	}
+
+
+

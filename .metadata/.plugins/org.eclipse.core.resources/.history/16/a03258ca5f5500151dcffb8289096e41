@@ -1,0 +1,33 @@
+package com.bimarianDev.truckDataIngestion;
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+
+//import com.spark.hbase.SparkHbaseBulkInsert.PutFunction;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
+public class TruckDataBulkInsert implements Serializable {
+
+	private static final long serialVersionUID = 8310463030761304020L;
+
+	public static void main(String[] args) throws JsonIOException,
+			JsonSyntaxException, FileNotFoundException {
+		SparkConf conf = new SparkConf().setAppName("Truck Data Bulk Insert").setMaster("local");
+
+		JavaSparkContext ctx = new JavaSparkContext(conf);
+		String path = "C:/Users/Vostro/Desktop/input/employee.json";
+
+		List<TruckBean> truckBean = TruckJsonToObject.getTruckData(path);
+		JavaRDD<TruckBean> truck = ctx.parallelize(truckBean);
+
+		System.out.println("log data count" + truck.collect());
+
+		ctx.close();
+	}
+}

@@ -1,0 +1,71 @@
+package com.bimarianDev.truckDataIngestion;
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+
+import org.apache.spark.api.java.function.Function;
+
+import com.cloudera.spark.hbase.JavaHBaseContext;
+//import com.spark.hbase.SparkHbaseBulkInsert.PutFunction;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.spark.hbase.SparkHbaseBulkInsert.PutFunction;
+
+public class TruckDataBulkInsert implements Serializable {
+
+	private static final long serialVersionUID = 8310463030761304020L;
+
+	public static void main(String[] args) throws JsonIOException,
+			JsonSyntaxException, FileNotFoundException {
+		SparkConf conf = new SparkConf().setAppName("Truck Data Bulk Insert").setMaster("local");
+
+		JavaSparkContext ctx = new JavaSparkContext(conf);
+		String path = "C:/Users/Vostro/Desktop/input/employee.json";
+
+		List<TruckBean> truckBean = TruckJsonToObject.getTruckData(path);
+		JavaRDD<TruckBean> truck = ctx.parallelize(truckBean);
+
+		System.out.println("log data count" + truck.collect());
+		Configuration hconf = HBaseConfiguration.create();
+		hconf.addResource(new Path("/etc/hbase/conf.cloudera.yarn/core-site.xml"));
+		hconf.addResource(new Path("/etc/hbase/conf.cloudera.hbase/hbase-site.xml"));
+		
+		JavaHBaseContext hbaseContext =new JavaHBaseContext(ctx,hconf);
+		
+		hbaseContext.bulkPut(truck,"truckInfo",new PutFunction(), true);
+		}
+		@SuppressWarnings("serial")
+		public static class PutFunction implements Function<TruckBean, Put>{
+			@Override
+			public Put call(TruckBean tbean) throws Exception {
+				//String[] cell=logline.split(",");
+				 Put put = new Put(Bytes.toBytes(tbean.getTimestamp()));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("VNo")),(Bytes.toBytes(tbean.getVNo())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("groupId")),(Bytes.toBytes(tbean.getGroupId())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("deploymentId")),(Bytes.toBytes( tbean.getDeploymentId())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Time")),(Bytes.toBytes( tbean.getTime())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Acc")),(Bytes.toBytes( tbean.getAcc())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Lat")),(Bytes.toBytes( tbean.getLat())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Lon")),(Bytes.toBytes( tbean.getLon())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Speed")),(Bytes.toBytes( tbean.getSpeed())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Angle")),(Bytes.toBytes( tbean.getAngle())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Locate")),(Bytes.toBytes( tbean.getLocate())));
+				 put.add((Bytes.toBytes("truckParameters")),(Bytes.toBytes("Oil")),(Bytes.toBytes( tbean.getOil())));
+				 
+				return put;
+			}
+			
+		}
+		ctx.close();
+	}
+}

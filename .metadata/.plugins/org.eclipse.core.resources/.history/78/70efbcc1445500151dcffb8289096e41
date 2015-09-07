@@ -1,0 +1,37 @@
+package com.dev.gson;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+public class GsonToObject {
+
+	public static void main(String[] args) {
+		Gson gson = new Gson();
+
+		try {
+
+//			BufferedReader br = new BufferedReader(
+//				new FileReader("C:/Users/Vostro/Desktop/input/employee.json"));
+//			List<EmployeeBean> ebean=new ArrayList<EmployeeBean>();
+//			//convert the json string back to object
+//			 ebean = gson.fromJson(br, ebean);
+//
+//			System.out.println(obj.toString());
+			List<EmployeeBean> data = new Gson().fromJson(new FileReader("input.json"), new TypeToken<List<EmployeeBean>>(){}.getType());
+		    System.out.println(new Gson().toJson(data));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    }
+	}
+
+
+

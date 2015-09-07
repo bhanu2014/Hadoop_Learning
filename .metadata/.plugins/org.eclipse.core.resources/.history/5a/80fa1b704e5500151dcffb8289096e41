@@ -1,0 +1,27 @@
+package com.dev.gson;
+
+import java.security.Timestamp;
+import java.sql.Time;
+import java.util.Arrays;
+
+public class EmployeeBean {
+	private String  VNo;
+	private String groupId;
+	private String deploymentId;
+	private String Time;
+	private String Acc;
+	private double Lat;
+	private double Lon;
+	private double Speed;
+	private int Angle;
+	private String Locate;
+	private double Oil;
+	private double Weight;
+	private double Mile;
+	private int version;
+	private Timestamp timestamp;
+	private String Location;
+	
+	
+	
+}
