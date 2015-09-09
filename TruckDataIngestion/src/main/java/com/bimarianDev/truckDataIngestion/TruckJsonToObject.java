@@ -2,7 +2,6 @@ package com.bimarianDev.truckDataIngestion;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,14 +16,12 @@ public class TruckJsonToObject implements Serializable {
 
 	public static List<TruckBean> getTruckData(String path) throws JsonIOException, JsonSyntaxException, FileNotFoundException {
 
-		
-			List<TruckBean> data = new Gson().fromJson(new FileReader(path), new TypeToken<List<TruckBean>>(){}.getType());
-		    
-			System.out.println("---Data: "+data);
-			
-		    return data;
-}
+		List<TruckBean> data = new Gson().fromJson(new FileReader(path), new TypeToken<List<TruckBean>>() {}.getType());
+
+		for (TruckBean tb : data) {
+			System.out.println("truck: " + tb.toString());
+		}
+
+		return data;
 	}
-
-
-
+}

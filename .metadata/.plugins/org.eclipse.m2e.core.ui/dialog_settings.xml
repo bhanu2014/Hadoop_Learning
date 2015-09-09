@@ -4,6 +4,8 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.dev.gson"/>
+			<item value="com.bimarianDev.truckDataIngestion"/>
 			<item value="com.spark.cummulativecalucation"/>
 			<item value="com.logGenerator"/>
 			<item value="com.spark.sparkstreaming"/>
@@ -19,6 +21,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="GsonExample"/>
+			<item value="TruckDataIngestion"/>
 			<item value="cummulativecalucation"/>
 			<item value="logGenerator"/>
 			<item value="SparkStreamingLearning"/>
@@ -65,6 +69,7 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="com.bimarianDev.TruckDataIngestion"/>
 			<item value="com.javaJerseyExample"/>
 			<item value="com.java.JersyApi"/>
 			<item value="com.Spark.StreamingCummulativeCals"/>
@@ -73,6 +78,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="TruckDataIngestion"/>
 			<item value="JerseyExample"/>
 			<item value="JersyApi"/>
 			<item value="StreamingCummulativeCals"/>
